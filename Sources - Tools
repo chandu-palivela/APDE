@@ -2,7 +2,7 @@ URL Sources - Common Crawl, Wayback Machine, urlscan, VT, IntelligenceX, OTX
 Subdomain Sources - Common Crawl, crt.sh, wayback machine, OSTIE
 
 waybackurls - Wayback machine
-waymore - wayback machine, Common crawl, OTX, URLScan, Virustotal, intelligenceX (intelx.io) - %APPDATA%\waymore\config.yml or $HOME/.config/waymore/config.yml
+waymore - wayback machine, Common crawl, OTX, URLScan, VT - %APPDATA%\waymore\config.yml or $HOME/.config/waymore/config.yml
 gau - multi-source waybackurls - Get All URLs from - Common crawl, URLScan, OTX, wayback - $HOME/.gau.toml or %USERPROFILE%\.gau.toml
 katana - filter Live active website crawler
 alterx - filter Live domains
