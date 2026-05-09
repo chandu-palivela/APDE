@@ -34,49 +34,52 @@ run_pipeline() {
   echo "[+] Running pipeline for: $TARGET"
 
   #########################
-  # 1. PASSIVE COLLECTION
+  # 1. PASSIVE RECON
   #########################
-
+  
+  echo "[+] Running gau for: $TARGET"
   gau $TARGET > output/$SAFE_TARGET/gau.txt
-  waybackurls $TARGET > output/$SAFE_TARGET/wayback.txt
+  
+  echo "[+] Running waybackurls for: $TARGET"
+  waybackurls -no-subs $TARGET > output/$SAFE_TARGET/wayback.txt
 
-  cat output/$SAFE_TARGET/gau.txt output/$SAFE_TARGET/wayback.txt \
-    | sort -u > output/$SAFE_TARGET/passive.txt
+  echo "[+] Running waymore for: $TARGET"
+  waymore -n -mode U -oU output/$SAFE_TARGET/waymore.txt
 
+  cat output/$SAFE_TARGET/gau.txt output/$SAFE_TARGET/wayback.txt output/$SAFE_TARGET/waymore.txt  | sort -u > output/$SAFE_TARGET/passive.txt
 
   #########################
   # 2. LIVE CRAWL
   #########################
 
-  katana -u "https://$TARGET" -jc -silent > output/$SAFE_TARGET/katana.txt
+  katana -u "https://$TARGET" -jc -silent -o output/$SAFE_TARGET/katana.txt 
+  # katana -slient -d 10 -jc -jsl -kf all -pc -u "https://$TARGET" -o output/$SAFE_TARGET/katana.txt [-headless -kb]
 
-  cat output/$SAFE_TARGET/passive.txt output/$SAFE_TARGET/katana.txt \
-    | sort -u > output/$SAFE_TARGET/all_urls.txt
+  cat output/$SAFE_TARGET/passive.txt output/$SAFE_TARGET/katana.txt | sort -u > output/$SAFE_TARGET/all_urls.txt
 
 
   #########################
   # 3. PARAM FILTER
   #########################
 
-  cat output/$SAFE_TARGET/all_urls.txt | grep "?" > output/$SAFE_TARGET/params.txt
+  cat output/$SAFE_TARGET/all_urls.txt | grep "?" > output/$SAFE_TARGET/param_urls.txt
 
 
   #########################
   # 4. CLEAN NOISE
   #########################
 
-  cat output/$SAFE_TARGET/params.txt | uro > output/$SAFE_TARGET/clean.txt
+  cat output/$SAFE_TARGET/param_urls.txt | uro -o output/$SAFE_TARGET/clean_urls_uro.txt
+  cat output/$SAFE_TARGET/param_urls.txt | qsreplace -a > output/$SAFE_TARGET/clean_urls_qsreplace.txt
 
-
+  cat output/$SAFE_TARGET/clean_urls_uro.txt output/$SAFE_TARGET/clean_urls_qsreplace.txt | sort -u > output/$SAFE_TARGET/clean_urls.txt
+  
   #########################
   # 5. LIVE CHECK
   #########################
 
-  httpx -l output/$SAFE_TARGET/clean.txt -silent -status-code \
-    > output/$SAFE_TARGET/live.txt
-
-  cat output/$SAFE_TARGET/live.txt | awk '{print $1}' \
-    > output/$SAFE_TARGET/live_urls.txt
+  httpx -l output/$SAFE_TARGET/clean_urls.txt -silent -status-code > output/$SAFE_TARGET/live.txt
+  cat output/$SAFE_TARGET/live.txt | awk '{print $1}' > output/$SAFE_TARGET/live_urls.txt
 
 
   #########################
