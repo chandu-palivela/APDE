@@ -1,8 +1,5 @@
-URL sources: Wayback, Alien vault OTX, common crawl, otx, urlscan, censys, shodan, OSTIE, bruteforce (on - off of technology), common known files, waymore
-subdomain sources: Wayback, Alien vault OTX, common crawl, otx, urlscan, censys, shodan, OSTIE, bruteforce (on - off of technology), common known files, waymore, virustotal, threat crowd, 
-
-URL sources: Internet Archive, AlienVault OTX, Common Crawl, urlscan.io, waymore, live crawling (katana/hakrawler), JS parsing, path bruteforce, common known files.
-Subdomain sources: Internet Archive, AlienVault OTX, Common Crawl, urlscan.io, Censys, Shodan, VirusTotal, ThreatCrowd, bruteforce, DNS/cert transparency sources, and waymore.
+URL Sources - Common Crawl, Wayback Machine, urlscan, VT, IntelligenceX, OTX
+Subdomain Sources - Common Crawl, crt.sh, wayback machine, OSTIE
 
 waybackurls - Wayback machine
 waymore - wayback machine, Common crawl, OTX, URLScan, Virustotal, intelligenceX (intelx.io) - %APPDATA%\waymore\config.yml or $HOME/.config/waymore/config.yml
@@ -14,14 +11,12 @@ assetfinder - passive OSINT domain only recon tool - FB, VT, crt.sh/similar - No
 subfinder (more powerful sources) - passive OSINT domain only recon tool - All OSTIE - ~/.config/subfinder/config.yaml | ~/.config/subfinder/provider-config.yaml
 amass (more powerful sources & uses) - passive OSINT domain only recon tool - All OSTIE - ~/.config/amass/config.yaml | ~/.config/amass/datasources.yaml
 arjun - 
+hakrawler -
 
 Sources:
-Alien vault OTX - Need API key only for advanced uses
 Common crawl -
 crt.sh -
 wayback machine -
-facebook - Need API key only for advanced uses
-findsubdomains / Spyse - Need API key only for advanced uses
 
 OSTIE:
 Shodan - Need API key even for basic uses, but basic web UI is free.
@@ -29,3 +24,7 @@ Censys - Need API key even for basic uses, but basic web UI is free.
 urlscan - Need API key even for basic uses, but basic web UI & very basic uses (gau & waymore) are free & very limited.
 virustotal - Limited web and very basic use. Need API key even for basic uses. 
 intelligenceX - Limited web and very basic use. Need API key even for basic uses.
+Alien vault OTX - Need API key only for advanced uses
+facebook - Need API key only for advanced uses
+findsubdomains / Spyse - Need API key only for advanced uses
+Spyse - Need API key
